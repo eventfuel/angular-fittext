@@ -1,13 +1,13 @@
-# angular-fittext 
+# angular-fittext
 [Change Log](https://github.com/sollenne/angular-fittext/releases)
 
 ### [Heres the demo!](http://sollenne.com/angular-fittext-demo/)
 
 Angular directive (typescript) to do what fittext.js did when jquery was cool.
-This auto-scales the font size to fit the width of it's container. 
+This auto-scales the font size to fit the width or height of it's container.
 
 ### Versioning & What heppened to ng4-fittext?
-This package was renamed angular-fittext to get rid of the ng version binding. This will follow the updates for angular and will not need to be bound specifically to a version of angular. We have kept the same github repo, but renamed it to angular-fittext. 
+This package was renamed angular-fittext to get rid of the ng version binding. This will follow the updates for angular and will not need to be bound specifically to a version of angular. We have kept the same github repo, but renamed it to angular-fittext.
 
 ### Installation
 
@@ -23,22 +23,22 @@ Import it in your Angular project as a module
 1) Declare it in your module
     ```sh
     import {AngularFittextModule} from 'angular-fittext';
-    
+
     @NgModule({
       imports: [
         AngularFittextModule,
         ...
       ]
     })
-    
+
     ```
-    
+
 2) Use it in a component
-    
+
     **The element that contains this directive should have a CSS width!**
     ```sh
    import {Component} from '@angular/core';
-   
+
     @Component({
       selector: 'hero',
       template: `
@@ -48,12 +48,12 @@ Import it in your Angular project as a module
             </div>
          </div>`
     })
-    
+
     export class AppComponent {}
     ```
 
    Parameters:
-    
+
   | Parameter | Description | Values |
   | --- | --- | --- |
   | `fittext` (required) | Selector for the directive. | boolean (defaults to `true`)
@@ -62,6 +62,7 @@ Import it in your Angular project as a module
   | `[minFontSize]` (optional) | minimum font size allowed on element | number (defaults to `0`)
   | `[maxFontSize]` (optional) | maximum font size allowed on element | number (defaults to `infinity`)
   | `[delay]` (optional) | time to delay resize (in nanoseconds) | number (defaults to `100`)
+  | `[relativeTo]` (optional) | relative to width or height | string (defaults to `width`)
   | `[fontUnit]` (optional) | font unit to apply to the fontSize | px, em, ... (defaults to `px`)
 
 
@@ -75,4 +76,4 @@ ISC
 
 
 **- Rich**
-  
+

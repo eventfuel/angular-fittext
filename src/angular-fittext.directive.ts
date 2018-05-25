@@ -11,6 +11,7 @@ export class AngularFittextDirective implements AfterViewInit, OnInit, OnChanges
   @Input() minFontSize?: number | 'inherit' = 0;
   @Input() maxFontSize?: number | 'inherit' = Number.POSITIVE_INFINITY;
   @Input() delay? = 100;
+  @Input() relativeTo? = 'width';
   @Input() ngModel;
   @Input() fontUnit?: 'px' | 'em' | string = 'px';
 
@@ -79,13 +80,19 @@ export class AngularFittextDirective implements AfterViewInit, OnInit, OnChanges
 
   private calculateNewFontSize = (): number => {
     const ratio = (this.calcSize * this.newlines) / this.fittextElement.offsetWidth / this.newlines;
+    let relativeTotal = (this.fittextParent.offsetWidth -
+      (parseFloat(getComputedStyle(this.fittextParent).paddingLeft) +
+        parseFloat(getComputedStyle(this.fittextParent).paddingRight)) -
+      6)
+    if (this.relativeTo === 'height') {
+      relativeTotal = (this.fittextParent.offsetHeight -
+        (parseFloat(getComputedStyle(this.fittextParent).paddingTop) +
+          parseFloat(getComputedStyle(this.fittextParent).paddingBottom)))
+    }
 
     return Math.max(
       Math.min(
-        (this.fittextParent.offsetWidth -
-          (parseFloat(getComputedStyle(this.fittextParent).paddingLeft) +
-            parseFloat(getComputedStyle(this.fittextParent).paddingRight)) -
-          6) *
+        relativeTotal *
         ratio *
         this.compression,
         this.fittextMaxFontSize
