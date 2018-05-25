@@ -1,2 +1,2 @@
-export {AngularFittextModule} from './src/angular-fittext.module';
-export {AngularFittextDirective} from './src/angular-fittext.directive';
+export * from './src/angular-fittext.module';
+export * from './src/angular-fittext.directive';
